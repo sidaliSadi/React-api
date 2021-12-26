@@ -6,7 +6,7 @@ Démonstration d'une utilisation de base d'une API
 
 Télécharger le dépot :
 
-`git clone https://github.com/plarrat/Init-React-API.git`
+`git clone https://github.com/sidaliSadi/React-api.git`
 
 Se positionner dans le répertoire et installer les dépendances via 
 
