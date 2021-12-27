@@ -1,10 +1,10 @@
 # Init React API
 
-Démonstration d'une utilisation de base d'une API
+Connexion à L'API api_pharma pour afficher/supprimer/modifier medicaments/categories
 
 ## Installation
 
-Télécharger le dépot :
+Clonage du dépot :
 
 `git clone https://github.com/sidaliSadi/React-api.git`
 
