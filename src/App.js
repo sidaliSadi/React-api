@@ -84,8 +84,11 @@ function App() {
 
       return (
         <Carousel.Item>
-          <h4>{m.id_med}</h4>
-          <h4>{m.cat}</h4>
+          <h4>Id medicament : {m.id_med}</h4>
+          <h4>Titre : {m.title}</h4>
+          <h4>ID categorie : {m.cat}</h4>
+          <h4>Autorisation : {m.authorization_holder}</h4>
+          <h4>CIS_code : {m.cis_code}</h4>
         </Carousel.Item>
       );
     });
@@ -96,8 +99,9 @@ function App() {
 
       return (
         <Carousel.Item>
-          <h4>{c.id_cat}</h4>
-          <h4>{c.nom}</h4>
+          <h4>ID categorie : {c.id_cat}</h4>
+          <h4>Nom : {c.nom}</h4>
+          <h4>CIS_code : {c.cis_code}</h4>
         </Carousel.Item>
       );
     });
@@ -109,23 +113,26 @@ function App() {
   function addCategorie(event) {
     event.preventDefault();
     let url = 'http://localhost:3010/category/';
-    const { id_cat, nom } = { ...formCategorie }
+    const { id_cat, nom, cis_code } = { ...formCategorie }
     console.log(formCategorie);
     axios.post(url, {
-
       id_cat,
       nom,
+      cis_code,
     });
   }
 
   function addMedicament(event) {
     event.preventDefault();
     let url = 'http://localhost:3010/medicine';
-    const { id_med, cat } = { ...formMedicament }
+    const { id_med,title , cat, authorization_holder, cis_code } = { ...formMedicament }
     console.log(formMedicament);
     axios.post(url, {
       id_med,
+      title,
       cat,
+      authorization_holder,
+      cis_code,
     });
   }
 
@@ -167,7 +174,6 @@ function App() {
             <Button variant="secondary" onClick={getAllCategories} >Afficher toutes les categories </Button>
           </Col>
         </Row>
-
 
       </Container>
       <Container>
@@ -267,6 +273,21 @@ function App() {
               </Form.Group>
 
               <Form.Group className="mb-3" >
+                <Form.Label>Nom medicament</Form.Label>
+                <Form.Control
+                  value={formCategorie.title}
+                  type="nom" placeholder="Nom Medicament..."
+                  onChange={
+                    (e) => {
+                      let tmp = { ...formMedicament }
+                      tmp.title = e.target.value;
+                      setFormMedicament(tmp)
+
+                    }}
+                  required />
+              </Form.Group>
+
+              <Form.Group className="mb-3" >
                 <Form.Label> Categorie du medicament</Form.Label>
                 <Form.Control
                   value={formMedicament.cat}
@@ -280,6 +301,34 @@ function App() {
                       setFormMedicament(tmp)
                     }}
                 />
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label>Autorisation</Form.Label>
+                <Form.Control
+                  value={formCategorie.authorization_holder}
+                  type="autorisation" placeholder="Autorisation Medicament..."
+                  onChange={
+                    (e) => {
+                      let tmp = { ...formMedicament }
+                      tmp.authorization_holder = e.target.value;
+                      setFormMedicament(tmp)
+
+                    }}
+                  required />
+              </Form.Group>
+              <Form.Group className="mb-3" >
+                <Form.Label>CIS code Medicament</Form.Label>
+                <Form.Control
+                  value={formCategorie.cis_code}
+                  type="id" placeholder="CIS code Medicament..."
+                  onChange={
+                    (e) => {
+                      let tmp = { ...formMedicament }
+                      tmp.cis_code = e.target.value;
+                      setFormMedicament(tmp)
+
+                    }}
+                  required />
               </Form.Group>
 
               <Button variant='info' type='submit'>Enregistrer</Button>
@@ -315,6 +364,22 @@ function App() {
                     (e) => {
                       let tmp = { ...formCategorie }
                       tmp.nom = e.target.value;
+                      setFormCategorie(tmp)
+                    }}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3" >
+                <Form.Label> cis_code categorie</Form.Label>
+                <Form.Control
+                  value={formCategorie.cis_code}
+                  type="ciscategorie"
+                  placeholder="Cis code Categorie..."
+                  required
+                  onChange={
+                    (e) => {
+                      let tmp = { ...formCategorie }
+                      tmp.cis_code = e.target.value;
                       setFormCategorie(tmp)
                     }}
                 />
